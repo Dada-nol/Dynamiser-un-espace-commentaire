@@ -1,60 +1,59 @@
 const form = document.querySelector("form");
 const firstname = document.getElementById("first-name");
 const lastname = document.getElementById("last-name");
-const message = document.getElementById("message-max");
+const message = document.getElementById("message");
 const alert = document.getElementById("error-message");
-const commentList = document.getElementById("commentList");
+const commentList = document.getElementById("comment-list");
+
 
 function alertmessage() {
-    alert.style.display = "initial"
+    alert.style.display = "inherit"
 };
 
-console.log(alertmessage);
-
-
-function deleteForm () {
-    firstname = "";
-    lastname = "";
-    message = "";
+function sup_alertmessage() {
+    alert.style.display = "none"
 };
 
+function addCom() {
 
-function newComList() {
     let newDiv1 = document.createElement('div');
     let newDiv2 = document.createElement('div');
     let newDiv3 = document.createElement('div');
     let newH3 = document.createElement('h3');
     let newP = document.createElement('p');
 
-    newDiv1.classList.add("flex space-x-4 text-sm text-gray-500");
-    newDiv2.classList.add("flex-1 py-10");
-    newDiv3.classList.add("prose prose-sm mt-4 max-w-none text-gray-500");
-    newH3.classList.add("font-medium text-gray-900");
-
-    newH3Text = document.createTextNode(firstname.value +""+lastname.value);
-    newPText = document.createTextNode(message.value);
+    let newH3Text = document.createTextNode(firstname.value +" "+lastname.value);
+    let newPText = document.createTextNode(message.value);
 
     newDiv1.appendChild(newDiv2);
-    newDiv1.appendChild(newDiv3);
     newDiv2.appendChild(newH3);
+    newDiv2.appendChild(newDiv3);
     newDiv3.appendChild(newP);
+
     newH3.appendChild(newH3Text);
     newP.appendChild(newPText);
 
     commentList.appendChild(newDiv1);
+
+    newDiv1.className = "flex space-x-4 text-sm text-gray-500";
+    newDiv2.className = "flex-1 py-10 border-t border-gray-200";
+    newH3.className = "font-medium text-gray-900";
+    newDiv3.className = "prose prose-sm mt-4 max-w-none text-gray-500";
 };
 
 
 
 form.addEventListener("submit", function(event) {
 
-if (firstname ==="" || lastname ==="" || message ==="") {
-    alertmessage();
-} else {
-    deleteForm();
-    newComList();
-};
     event.preventDefault();
+
+    if (firstname.value =="" || lastname.value =="" || message.value =="") {
+        alertmessage();
+    } else {
+        addCom();
+        sup_alertmessage();
+        form.reset();
+    };
 
 });
 
