@@ -45,7 +45,11 @@ function addCom() {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  if (firstname.value === "" || lastname.value === "" || message.value === "") {
+  if (
+    firstname.value.trim() === "" ||
+    lastname.value.trim() === "" ||
+    message.value.trim() === ""
+  ) {
     alertmessage();
   } else {
     addCom();
